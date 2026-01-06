@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GO WEATHER 2.0</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="shortcut icon" href="GO.jpeg" type="image/x-icon">
+  </head>
+  <body>
+    <main class="main-container">
+      <header class="input-container">
+        <input class="city-input" placeholder="Search City" type="text" />
+        <button class="search-btn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </header>
+
+      <section class="weather-info" style="display: none;">
+        <div class="location-date-container">
+          <div class="location">
+            <i class="fa-solid fa-location-dot"></i>
+            <h5 class="country-txt">Kolkata</h5>
+          </div>
+          <div class="current-time-date">
+            <div id="current-time">12:00 PM</div>
+            <div class="current-date-txt regular-txt">Wed, 16 Apr</div>
+          </div>
+        </div>
+
+        <div class="weather-summary-container">
+          <div class="weather-summary-img" id="weather-svg"></div>
+          
+          <div class="weather-summary-info">
+            <h3 class="condition-txt regular-txt">Clouds</h3>
+            <h2 class="temp-txt">30 °C</h2>
+            <h4 class="feelslike-txt regular-txt">Feels like: 32 °C</h4>
+            <h4 class="minmax-txt regular-txt">Min: 26° | Max: 34°</h4>
+          </div>
+        </div>
+
+        <div class="weather-conditions-container">
+          <div class="condition-item">
+            <i class="fa-solid fa-droplet"></i>
+            <div class="condition-info">
+              <h5 class="regular-txt">Humidity</h5>
+              <h4 class="humidity-value-txt">50%</h4>
+            </div>
+          </div>
+
+          <div class="condition-item">
+            <i class="fa-solid fa-smog"></i>
+            <div class="condition-info">
+              <h5 class="regular-txt">Air Quality</h5>
+              <h5 class="aqi-value-txt">Good</h5>
+            </div>
+          </div>
+
+          <div class="condition-item">
+            <i class="fa-solid fa-cloud-rain"></i>
+            <div class="condition-info">
+              <h6 class="regular-txt">Precipitation Chance</h6>
+              <h4 class="rain-value-txt">0%</h4>
+            </div>
+          </div>
+
+          <div class="condition-item">
+            <i class="fa-solid fa-wind"></i>
+            <div class="condition-info">
+              <h5 class="regular-txt">Wind Speed</h5>
+              <h4 class="wind-value-txt">2 m/s</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="forecast-items-container"></div>
+      </section>
+
+      <section class="search-city section-message">
+        <img src="assets/message/search-city.png" alt="Search City" onerror="this.style.display='none'"/><h4 class="regular-txt">
+            Find out the Weather conditions in your city.</h4>
+        <button class="current-location-btn">
+          <i class="fa-solid fa-location-crosshairs"></i>
+          Use Current Location
+        </button>
+      </section>
+
+      <section class="not-found section-message" style="display: none">
+        <img src="assets/message/not-found.png" alt="Not Found" onerror="this.style.display='none'"/>
+        <div>
+          <h1>Invalid City Input</h1>
+          <h5 class="regular-txt">
+            Please try again with a valid city name.
+          </h5>
+        </div>
+      </section>
+      <footer class="app-footer">
+        <p><i><b>Know Before You Go</b></i><br>Source: <a href="https://openweathermap.org/" target="_blank">OpenWeather</a></p>
+      </footer>
+    </main>
+     <footer class="app-footer1">
+       <p>© 2026 Go Weather. All Rights Reserved.<br>Our previous versions: <a href="https://deeeevvv.github.io/Go.Weather/" target="_blank">Go Weather</a>,<a href="https://deeeevvv.github.io/Go.Weather.Next/" target="_blank">Go Weather (NEXT)</a><br><a href="https://deeeevvv.github.io/dev.portfolio/contact.html" target="_blank">Contact Us</a></p>
+    </footer>
+  </body>
+</html>
