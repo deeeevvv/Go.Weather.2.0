@@ -8,6 +8,9 @@
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
     <link rel="shortcut icon" href="GO.jpeg" type="image/x-icon">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e1e1e">
+    <link rel="apple-touch-icon" href="GO.jpeg">
   </head>
   <body>
     <main class="main-container">
@@ -103,5 +106,12 @@
      <footer class="app-footer1">
        <p>© 2026 Go Weather. All Rights Reserved.<br>Our previous versions: <a href="https://deeeevvv.github.io/Go.Weather/" target="_blank">Go Weather</a>,<a href="https://deeeevvv.github.io/Go.Weather.Next/" target="_blank">Go Weather (NEXT)</a><br><a href="contact.html" target="_blank">Contact Us</a></p>
     </footer>
+    <script>
+    if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js');
+    });
+    }
+   </script>
   </body>
 </html>

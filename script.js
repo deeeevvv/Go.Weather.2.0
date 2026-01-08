@@ -23,6 +23,8 @@ const aqiValueTxt = document.querySelector(".aqi-value-txt");
 
 const apiKey = "62cef8c6970f2455c00b419e7b6c6811"; 
 
+let timeInterval; // Variable to store the clock interval
+
 /* ---------------- EVENTS ---------------- */
 
 searchBtn.addEventListener("click", () => {
@@ -75,19 +77,33 @@ function getCurrentDate() {
   });
 }
 
+// Logic to check if it's night time for the icon (Boolean only)
 function isNight(timezone) {
   const utc = Date.now() + new Date().getTimezoneOffset() * 60000;
   const cityTime = new Date(utc + timezone * 1000);
-  
-  if(currentTimeEl) {
-    currentTimeEl.textContent = cityTime.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-    });
-  }
-  
   const hour = cityTime.getHours();
   return hour >= 18 || hour < 6;
+}
+
+// New Function: Starts a live clock for the specific timezone
+function startLiveClock(timezone) {
+    // Clear any existing interval to prevent overlapping timers
+    if (timeInterval) clearInterval(timeInterval);
+
+    const updateClock = () => {
+        const utc = Date.now() + new Date().getTimezoneOffset() * 60000;
+        const cityTime = new Date(utc + timezone * 1000);
+        
+        if(currentTimeEl) {
+            currentTimeEl.textContent = cityTime.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+            });
+        }
+    };
+
+    updateClock(); // Update immediately
+    timeInterval = setInterval(updateClock, 1000); // Update every second
 }
 
 function calculateUS_AQI(pm25) {
@@ -174,14 +190,15 @@ async function processWeather(weatherData) {
   tempTxt.textContent = `${Math.round(temp)} °C`;
   feelsLikeTxt.textContent = `Feels like: ${Math.round(feels_like)} °C`;
   
-  // NOTE: minMaxTxt is now updated in updateForecastInfo using full-day data!
-  // We set a temporary fallback here:
   minMaxTxt.textContent = `Min: ${Math.round(temp_min)}° | Max: ${Math.round(temp_max)}°`;
 
   conditionTxt.textContent = main;
   humidityValueTxt.textContent = `${humidity}%`;
   windValueTxt.textContent = `${speed} m/s`;
   currentDateTxt.textContent = getCurrentDate();
+
+  // Start the live clock for the found city
+  startLiveClock(timezone);
 
   weatherSvg.innerHTML = getWeatherSVG(weatherId, isNight(timezone));
 
